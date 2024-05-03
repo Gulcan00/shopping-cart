@@ -7,12 +7,17 @@ export function ShoppingCartProvider({ children }) {
 
   const getItemCount = () => shoppingCart.length;
 
+  const addToCart = (item) => {
+    setShoppingCart([...shoppingCart, item]);
+  };
+
   return (
     <ShoppingCartContext.Provider
       value={{
         shoppingCart,
         setShoppingCart,
         getItemCount,
+        addToCart,
       }}
     >
       {children}
