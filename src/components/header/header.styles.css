@@ -4,3 +4,11 @@
   height: 60px;
   width: 100%;
 }
+
+.nav-link {
+  @apply p-2 border border-transparent hover:border-white;
+}
+
+.nav-cart-count {
+  color: #f08804;
+}
