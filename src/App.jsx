@@ -1,10 +1,13 @@
-import Header from './components/header/header';
+import Header from './components/header/Header';
+import Home from './components/home/Home';
 
 export default function App() {
   return (
     <>
       <Header />
-      <h1>test</h1>
+      <main className="bg-[#eaeded]">
+        <Home />
+      </main>
     </>
   );
 }
