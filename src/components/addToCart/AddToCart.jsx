@@ -10,22 +10,32 @@ export default function AddToCart({ product }) {
 
   return (
     <div className="grid grid-cols-1 gap-4">
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-3 gap-2">
         <button
-          onClick={() => setQuantity((prevQuantity) => prevQuantity - 1)}
+          onClick={() =>
+            setQuantity((prevQuantity) => {
+              if (prevQuantity > 0) {
+                return prevQuantity - 1;
+              }
+              return 0;
+            })
+          }
           aria-label="decrease"
+          className="text-gray-700 rounded-full hover:bg-gray-900 hover:text-white"
         >
           <FontAwesomeIcon icon={faMinus} />
         </button>
         <input
           type="number"
-          className="p-2 border border-gray-400 text-center"
+          className="p-2 border border-gray-400 rounded text-center"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
+          min={0}
         />
         <button
           onClick={() => setQuantity((prevQuantity) => prevQuantity + 1)}
           aria-label="increase"
+          className="text-gray-700 rounded-full hover:bg-gray-900 hover:text-white"
         >
           <FontAwesomeIcon icon={faPlus} />
         </button>
