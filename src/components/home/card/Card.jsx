@@ -9,24 +9,26 @@ export default function Card({ product }) {
   return (
     <div className="bg-white shadow-md w-80">
       <div>
-        <div className="relative block pt-[100%]">
+        <a className="relative block pt-[100%] cursor-pointer hover:opacity-70">
           <img
             src={product.image}
             alt={product.title}
             className="w-[50%] m-auto absolute top-0 left-0 right-0 bottom-0 object-cover"
           />
-        </div>
-        <div className="flex flex-col gap-1 p-2">
-          <p className="truncate">{product.title}</p>
+        </a>
+        <div className="grid grid-cols-1 gap-1 p-4">
+          <a className="truncate hover:text-[#f08804] cursor-pointer">
+            {product.title}
+          </a>
           <div className="flex gap-1 text-sm">
             {product.rating.rate}
             <Rating
               initialRating={product.rating.rate}
               emptySymbol={
-                <FontAwesomeIcon icon={faStar} color="#ffa41c" size="md" />
+                <FontAwesomeIcon icon={faStar} color="#ffa41c" size="lg" />
               }
               fullSymbol={
-                <FontAwesomeIcon icon={faSolidStar} color="#ffa41c" size="md" />
+                <FontAwesomeIcon icon={faSolidStar} color="#ffa41c" size="lg" />
               }
               readonly
             />

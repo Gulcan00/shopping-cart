@@ -11,7 +11,15 @@ export function useData(url) {
       const resData = await response.json();
 
       if (response.ok) {
-        setData(resData);
+        const categorizedData = resData.reduce((obj, product) => {
+          if (!obj[product.category]) {
+            obj[product.category] = [];
+          }
+
+          obj[product.category].push(product);
+          return obj;
+        }, {});
+        setData(categorizedData);
       } else {
         setError(resData);
       }
