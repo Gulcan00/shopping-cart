@@ -1,4 +1,5 @@
 import { useData } from '../../hooks/useData';
+import Spinner from '../spinner/Spinner';
 import Category from './category/Category';
 
 export default function Home() {
@@ -6,8 +7,9 @@ export default function Home() {
 
   return (
     <div className="max-w-screen-xl mx-auto py-4 px-6">
+      {loading && <Spinner />}
       {!loading && data && (
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-16">
           {Object.keys(data).map((key) => (
             <Category key={key} category={key} products={data[key]} />
           ))}
