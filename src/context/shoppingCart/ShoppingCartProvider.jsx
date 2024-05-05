@@ -17,6 +17,12 @@ export function ShoppingCartProvider({ children }) {
     setShoppingCart(newShoppingCart);
   };
 
+  const removeFromCart = (id) => {
+    const newShoppingCart = new Map(shoppingCart);
+    newShoppingCart.delete(id);
+    setShoppingCart(newShoppingCart);
+  };
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -24,6 +30,7 @@ export function ShoppingCartProvider({ children }) {
         setShoppingCart,
         getItemCount,
         addToCart,
+        removeFromCart,
       }}
     >
       {children}

@@ -1,12 +1,17 @@
+import { useLocation } from 'react-router-dom';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useShoppingCartContext } from '../../context/shoppingCart/useShoppingCartContext';
 import { ProductType } from '../../product.type';
 
-export default function AddToCart({ product }) {
-  const { addToCart } = useShoppingCartContext();
-  const [quantity, setQuantity] = useState(0);
+export default function EditProductCart({ product, initialQuantity = 0 }) {
+  const location = useLocation();
+  const { addToCart, removeFromCart } = useShoppingCartContext();
+  const [quantity, setQuantity] = useState(initialQuantity);
+
+  const isCartPage = location.pathname === '/cart';
 
   return (
     <div className="grid grid-cols-1 gap-4">
@@ -42,14 +47,24 @@ export default function AddToCart({ product }) {
       </div>
       <button
         className="bg-yellow-300 rounded-full py-2 hover:bg-yellow-400"
-        onClick={() => addToCart(product, quantity)}
+        onClick={() => {
+          if (isCartPage) {
+            removeFromCart(product.id);
+          } else {
+            addToCart(product, quantity);
+          }
+        }}
       >
-        Add to Cart
+        {isCartPage ? 'Remove from Cart' : 'Add to Cart'}
       </button>
+      {isCartPage && (
+        <button onClick={() => addToCart(product, quantity)}>Save</button>
+      )}
     </div>
   );
 }
 
-AddToCart.propTypes = {
+EditProductCart.propTypes = {
   product: ProductType,
+  initialQuantity: PropTypes.number,
 };
