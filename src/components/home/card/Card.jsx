@@ -4,6 +4,7 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { faStar as faSolidStar } from '@fortawesome/free-solid-svg-icons';
 
 import { ProductType } from '../../../product.type';
+import AddToCart from '../../addToCart/AddToCart';
 
 export default function Card({ product }) {
   return (
@@ -38,6 +39,7 @@ export default function Card({ product }) {
             <span className="self-start text-sm">$</span>
             <span className="text-lg font-semibold">{product.price}</span>
           </p>
+          <AddToCart product={product} />
         </div>
       </div>
     </div>

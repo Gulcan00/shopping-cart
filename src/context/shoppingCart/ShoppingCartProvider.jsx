@@ -3,12 +3,18 @@ import { useState } from 'react';
 import { ShoppingCartContext } from './ShoppingCartContext';
 
 export function ShoppingCartProvider({ children }) {
-  const [shoppingCart, setShoppingCart] = useState([]);
+  const [shoppingCart, setShoppingCart] = useState(new Map());
 
-  const getItemCount = () => shoppingCart.length;
+  const getItemCount = () =>
+    shoppingCart.values().reduce((count, item) => {
+      count += item.quantity;
+      return count;
+    }, 0);
 
-  const addToCart = (item) => {
-    setShoppingCart([...shoppingCart, item]);
+  const addToCart = (product, quantity) => {
+    const newShoppingCart = new Map(shoppingCart);
+    newShoppingCart.set(product.id, { product, quantity });
+    setShoppingCart(newShoppingCart);
   };
 
   return (
