@@ -6,9 +6,14 @@
 }
 
 .nav-link {
-  @apply p-2 border border-transparent hover:border-white;
+  @apply p-2 border border-transparent hover:border-white hover:text-yellow-300;
 }
 
 .nav-cart-count {
   color: #f08804;
+}
+
+.nav-link.active {
+  color: #f3a339;
+  font-weight: bold;
 }
