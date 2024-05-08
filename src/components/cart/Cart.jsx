@@ -16,27 +16,37 @@ export default function Cart() {
         {getItemCount() > 0 ? (
           <>
             <h1 className="text-2xl mb-1">Shopping Cart</h1>
-            <p className="text-end text-sm text-gray-700">Price</p>
+            <p className="text-end text-sm text-gray-700" id="price">
+              Price
+            </p>
             <hr />
             <div className="grid grid-cols-1 mt-3 gap-4">
               {[...shoppingCart.values()].map((value) => (
                 <Fragment key={value.product.id}>
-                  <div className="grid grid-cols-[1fr,2fr,1fr] gap-4 mt-3">
+                  <div className="grid grid-cols-2 md:grid-cols-[1fr,2fr,1fr] gap-4 mt-3">
                     <img
                       src={value.product?.image}
                       alt={value.product?.title}
                     />
-                    <div>
+                    <p
+                      className="font-semibold justify-self-end col-start-3"
+                      aria-labelledby="price"
+                    >
+                      ${value.product.price}
+                    </p>
+                    <div className="md:col-start-2 md:row-start-1 col-span-3 md:col-auto">
                       <h2 className="text-xl">{value.product.title} </h2>
-                      <p>Quantity:</p>
+                      <p className="text-gray-800 mb-4">
+                        Quantity:{' '}
+                        <span className="text-gray-900 font-medium">
+                          {value.quantity}
+                        </span>
+                      </p>
                       <EditProductCart
                         product={value.product}
                         initialQuantity={value.quantity}
                       />
                     </div>
-                    <p className="font-semibold justify-self-end">
-                      ${value.product.price}
-                    </p>
                   </div>
                   <hr />
                 </Fragment>
