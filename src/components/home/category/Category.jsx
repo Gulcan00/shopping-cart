@@ -1,32 +1,39 @@
 import PropTypes from 'prop-types';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 import Card from '../card/Card';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faChevronLeft,
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons';
+
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 
 export default function Category({ category, products }) {
   return (
     <div>
-      <h1 className="capitalize font-medium text-2xl mb-2">{category}</h1>
-      <div className="flex gap-4 relative">
-        <button
-          className="absolute left-0 top-1/2 p-4 py-8 bg-slate-200 shadow rounded-r-lg hover:opacity-70 cursor-pointer"
-          aria-label="Previous"
-        >
-          <FontAwesomeIcon icon={faChevronLeft} />
-        </button>
+      <h1 className="capitalize font-medium text-2xl mb-2" id={category}>
+        {category}
+      </h1>
+      <Carousel responsive={responsive}>
         {products.map((product) => (
           <Card key={product.id} product={product} />
         ))}
-        <button
-          className="absolute right-0 top-1/2 p-4 py-8 bg-slate-200 shadow rounded-l-lg"
-          aria-label="Next"
-        >
-          <FontAwesomeIcon icon={faChevronRight} />
-        </button>
-      </div>
+      </Carousel>
     </div>
   );
 }
