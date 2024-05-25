@@ -38,7 +38,7 @@ export default function Header() {
         <ul className="flex justify-center gap-4 font-semibold text-sm">
           <li>
             <a href="#men's clothing" className="nav-link">
-              Men's clothing
+              Men&apos;s clothing
             </a>
           </li>
           <li>
@@ -53,7 +53,7 @@ export default function Header() {
           </li>
           <li>
             <a href="#women's clothing" className="nav-link">
-              Women's clothing
+              Women&apos;s clothing
             </a>
           </li>
         </ul>
