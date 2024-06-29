@@ -6,9 +6,10 @@ import EditProductCart from '../editProductCart/EditProductCart';
 export default function Cart() {
   const { getItemCount, shoppingCart } = useShoppingCartContext();
 
-  const totalPrice = shoppingCart
-    .values()
-    .reduce((sum, item) => (sum += item.product.price * item.quantity), 0);
+  const totalPrice = Array.from(shoppingCart.values()).reduce(
+    (sum, item) => (sum += item.product.price * item.quantity),
+    0
+  );
 
   return (
     <div className="p-8">

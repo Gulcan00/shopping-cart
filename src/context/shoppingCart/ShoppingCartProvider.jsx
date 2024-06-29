@@ -6,7 +6,7 @@ export function ShoppingCartProvider({ children }) {
   const [shoppingCart, setShoppingCart] = useState(new Map());
 
   const getItemCount = () =>
-    shoppingCart.values().reduce((count, item) => {
+    Array.from(shoppingCart.values()).reduce((count, item) => {
       count += item.quantity;
       return count;
     }, 0);
