@@ -37,6 +37,7 @@ export default function EditProductCart({ product, initialQuantity = 0 }) {
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
             min={0}
+            aria-label="quantity"
           />
           <button
             onClick={() => setQuantity((prevQuantity) => prevQuantity + 1)}
@@ -48,7 +49,11 @@ export default function EditProductCart({ product, initialQuantity = 0 }) {
         </div>
         <button
           className="bg-yellow-300 rounded-full py-2 hover:bg-yellow-400"
-          onClick={() => addToCart(product, quantity)}
+          onClick={() => {
+            const newQuantity = quantity == 0 ? quantity + 1 : quantity;
+            addToCart(product, newQuantity);
+            setQuantity(newQuantity);
+          }}
         >
           {isCartPage ? 'Update Cart' : 'Add to Cart'}
         </button>
